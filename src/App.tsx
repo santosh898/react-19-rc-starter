@@ -1,10 +1,17 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useEffect, useState } from "react";
+import reactLogo from "./assets/react.svg";
+import viteLogo from "/vite.svg";
+import "./App.css";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
+  const [otherCount, setOtherCount] = useState(0);
+
+  const double = { count: count * 2, randomNumber: Math.random().toFixed(2) };
+
+  useEffect(() => {
+    console.log(double, "has changed");
+  }, [double]);
 
   return (
     <>
@@ -21,15 +28,16 @@ function App() {
         <button onClick={() => setCount((count) => count + 1)}>
           count is {count}
         </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
+        <p>Double is {double.count}</p>
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+
+      <div className="card">
+        <button onClick={() => setOtherCount((count) => count + 1)}>
+          other count is {otherCount}
+        </button>
+      </div>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
